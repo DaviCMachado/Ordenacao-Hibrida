@@ -1,0 +1,35 @@
+Relatório do Trabalho 1 da disciplina de Pesquisa e Ordenação de Dados
+
+Desenvolvedores: Davi de Castro Machado e Carlos Velozo
+
+Periodo: 2024/1.
+
+Professor: Antonio Candia
+
+
+/// checklist de implementações
+
+o programa recebe:
+() inteiros
+() arrays de inteiros
+() arquivos de inteiros
+
+o programa apresenta bugs:
+()
+
+implementado:
+(x) funcao principal 1
+(x) funcao principal 2
+() funcao secundaria 1
+() funcao secundaria 2
+() fluxo do programa
+(x) chamada de funcoes
+() mensagens de erro
+() opcao de reinicio
+
+falta decidir:
+() nome dos algoritmos
+() design de codigo
+() implementações adicionais
+() explicacao dos algoritmos e seus usos
+

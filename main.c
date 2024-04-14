@@ -1,8 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include "algoritmo1.c"
+#include "algoritmo2.c"
 
-int main ()
+int main (int argc, char const *argv[])
 {
 
 
