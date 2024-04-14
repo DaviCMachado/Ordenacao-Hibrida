@@ -6,6 +6,9 @@ Periodo: 2024/1.
 
 Professor: Antonio Candia
 
+O código será avaliado utilizando o compilador gcc com opções "-O3 -ansi"
+
+Para a comparação de desempenho será aceito o uso de medição de tempo ou análise de complexidade - função O().
 
 /// checklist de implementações
 
@@ -26,6 +29,9 @@ implementado:
 (x) chamada de funcoes
 () mensagens de erro
 () opcao de reinicio
+() funciona em linux
+() relatorio de comparação por tempo
+() relatorio de comparação por complexidade
 
 falta decidir:
 () nome dos algoritmos
