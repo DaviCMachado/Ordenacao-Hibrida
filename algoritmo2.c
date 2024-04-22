@@ -52,18 +52,9 @@ void printArray(int array[], int size)
     printf("\n");
 }
 
-int algor2() 
+void algor2(int array[], int inicio, int size) 
 {
-    int array[] = {29, 25, 3, 49, 9, 37, 21};  // Array de exemplo
-    int size = sizeof(array) / sizeof(array[0]);
-
-    printf("Array antes da ordenação: ");
-    printArray(array, size);
-
-    quickSort(array, 0, size - 1);
-
-    printf("Array depois da ordenação: ");
-    printArray(array, size);
-
-    return 0;
+    quickSort(array, inicio, size);
 }
+
+ 

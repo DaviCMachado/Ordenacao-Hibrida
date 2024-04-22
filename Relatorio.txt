@@ -13,29 +13,25 @@ Para a comparação de desempenho será aceito o uso de medição de tempo ou an
 /// checklist de implementações
 
 o programa recebe:
-() inteiros
-() arrays de inteiros
-() arquivos de inteiros
+() arquivos de texto com inteiros
 
 o programa apresenta bugs:
-()
+Não
 
 implementado:
 (x) funcao principal 1
 (x) funcao principal 2
 () funcao secundaria 1
 () funcao secundaria 2
-() fluxo do programa
+() diagrama de fluxo do programa
 (x) chamada de funcoes
 () mensagens de erro
-() opcao de reinicio
-() funciona em linux
+(x) funciona em linux
 () relatorio de comparação por tempo
 () relatorio de comparação por complexidade
 
 falta decidir:
 () nome dos algoritmos
-() design de codigo
 () implementações adicionais
 () explicacao dos algoritmos e seus usos
 

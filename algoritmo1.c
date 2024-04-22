@@ -70,10 +70,7 @@ void mergeSort(int arr[], int left, int right)
     }
 }
 
-int algor1()
+void algor1 (int numeros[], int inicio, int size) 
 {
-
-
-
-    return 0;
+    mergeSort(numeros, inicio, size);
 }
