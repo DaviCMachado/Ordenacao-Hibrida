@@ -1,6 +1,6 @@
 Relatório do Trabalho 1 da disciplina de Pesquisa e Ordenação de Dados
 
-Desenvolvedores: Davi de Castro Machado e Carlos Velozo
+Desenvolvedores: Davi de Castro Machado e Carlos Eduardo Velozo
 
 Periodo: 2024/1.
 
