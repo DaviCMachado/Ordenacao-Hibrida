@@ -10,10 +10,16 @@ O código será avaliado utilizando o compilador gcc com opções "-O3 -ansi"
 
 Para a comparação de desempenho será aceito o uso de medição de tempo ou análise de complexidade - função O().
 
+
+Algoritmo1 = MergeSort + InsertionSort
+
+Algoritmo2 = QuickSort + ...
+
+
 /// checklist de implementações
 
 o programa recebe:
-() arquivos de texto com inteiros
+(x) arquivos de texto com inteiros
 
 o programa apresenta bugs:
 Não
@@ -21,17 +27,62 @@ Não
 implementado:
 (x) funcao principal 1
 (x) funcao principal 2
-() funcao secundaria 1
+(x) funcao secundaria 1
 () funcao secundaria 2
-() diagrama de fluxo do programa
+(1/2) diagrama de fluxo do programa
 (x) chamada de funcoes
 () mensagens de erro
 (x) funciona em linux
-() relatorio de comparação por tempo
-() relatorio de comparação por complexidade
+(1/2) relatorio de comparação por tempo
+(1/2) relatorio de comparação por complexidade
 
 falta decidir:
 () nome dos algoritmos
 () implementações adicionais
-() explicacao dos algoritmos e seus usos
+(1/2) explicacao dos algoritmos e seus usos
+
+
+            Como compilar:
+                gcc -O3 -ansi main.c -o main
+            
+            Como rodar:
+                ./main numeros.txt
+
+
+            Algoritmo1: mistura de MergeSort com InsertionSort
+            Algoritmo2: mistura de QuickSortSort com ...
+
+            <----Comparacao por tempo---->
+
+            Algoritmo1:
+            1k elementos: vence do MergeSort 
+            100k elementos: vence do MergeSort 
+            1M elementos: vence do MergeSort 
+
+            Algoritmo2:
+            1k elementos: vence do QuickSort??  falta testar
+            100k elementos: vence do QuickSort??
+            1M elementos: vence do QuickSort??
+
+
+            <----Explicacao Algoritmo1---->
+           
+            O MergeSort possui complexidade média de O(n log(n)),
+            nosso Algoritmo1 possui uma complexidade média também 
+            de O(n log(n)), porém o uso do InsertionSort em conjunto com o MergeSort acelera o processo de Ordenação e isso reduz em muito o tempo executado, em teoria funciona melhor para todos os casos.
+
+            Isso ocorre pois:
+
+            O Algoritmo1 reduz o número de chamadas recursivas em comparação com o MergeSort tradicional. 
+            
+            Ele só usa a recursão quando o tamanho do array ultrapassa um determinado limite (threshold). 
+            
+            Para arrays menores que o threshold, o algoritmo usa o Insertion Sort diretamente. 
+            
+            Isso reduz a sobrecarga de chamadas de função e o consumo de memória associado às chamadas recursivas.
+            
+            O InsertionSort é eficiente para arrays pequenos, pois requer menos movimentos de elementos. O Algoritmo1 aproveita essa característica, alternando para o InsertionSort quando detecta que um sub-array está menor que o threshold definido. 
+            
+            Isso é mais eficiente do que continuar a dividir e mesclar recursivamente como no MergeSort.
+
 

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "algoritmo2.h"
 
-// Função para trocar dois elementos de posição no array
+/* Função para trocar dois elementos de posição no array */
 void swap(int* a, int* b) 
 {
     int temp = *a;
@@ -10,43 +10,45 @@ void swap(int* a, int* b)
     *b = temp;
 }
 
-// Função para encontrar o pivô e particionar o array
+/* Função para encontrar o pivô e particionar o array */
 int partition(int array[], int low, int high) 
 {
-    int pivot = array[high]; // O pivô é o último elemento
-    int i = (low - 1); // O índice do menor elemento
+    int pivot = array[high]; /* O pivô é o último elemento */
+    int i = (low - 1); /* O índice do menor elemento */
+    int j = 0;
 
-    for (int j = low; j <= high - 1; j++) 
+    for (j = low; j <= high - 1; j++) 
     {
-        // Se o elemento atual for menor ou igual ao pivô
+        /* Se o elemento atual for menor ou igual ao pivô */
         if (array[j] <= pivot) 
         {
-            i++; // Incrementa o índice do menor elemento
-            swap(&array[i], &array[j]); // Troca os elementos
+            i++; /* Incrementa o índice do menor elemento */
+            swap(&array[i], &array[j]); /* Troca os elementos */
         }
     }
-    swap(&array[i + 1], &array[high]); // Coloca o pivô no lugar certo
-    return (i + 1); // Retorna a posição do pivô
+    swap(&array[i + 1], &array[high]); /* Coloca o pivô no lugar certo */
+    return (i + 1); /* Retorna a posição do pivô */
 }
 
-// Função principal do Quicksort
+/* Função principal do Quicksort */
 void quickSort(int array[], int low, int high) 
 {
     if (low < high) 
     {
-        // Encontra o pivô e particiona o array
+        /* Encontra o pivô e particiona o array */
         int pi = partition(array, low, high);
 
-        // Ordena os elementos antes e depois do pivô recursivamente
+        /* Ordena os elementos antes e depois do pivô recursivamente */
         quickSort(array, low, pi - 1);
         quickSort(array, pi + 1, high);
     }
 }
 
-// Função para imprimir o array
+/* Função para imprimir o array */
 void printArray(int array[], int size) 
 {
-    for (int i = 0; i < size; i++) 
+    int i = 0;
+    for (i = 0; i < size; i++) 
         printf("%d ", array[i]);
         
     printf("\n");
@@ -56,5 +58,3 @@ void algor2(int array[], int inicio, int size)
 {
     quickSort(array, inicio, size);
 }
-
- 
