@@ -1,5 +1,6 @@
 #include "algoritmo1.c"
 #include "algoritmo2.c"
+#include "quickSort.c"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,18 +10,6 @@
 /* Funcao de execucao dos algoritmos */
 void testa_algoritmo (void (*funcao)(), int numeros_teste[], int contador, int n)
 {
-
-    printf("\n\nExecutando algoritmo %d...\n", n);
-    clock_t inicio = clock();
-
-    /* Ordena os numeros usando a funcao dada */
-    funcao(numeros_teste, 0, contador - 1);
-
-    clock_t fim = clock();
-
-    /* Calcula o tempo de execucao em segundos */
-    float tempo_execucao = ((float) fim - (float) inicio) / CLOCKS_PER_SEC;
-
     char str[20];
     switch (n)
     {
@@ -28,7 +17,7 @@ void testa_algoritmo (void (*funcao)(), int numeros_teste[], int contador, int n
             strcpy(str,"MergeSort");
             break;
         case 2:
-            strcpy(str,"Hibrido1");
+            strcpy(str,"TimSort");
             break;
         case 3:
             strcpy(str,"QuickSort");
@@ -39,6 +28,17 @@ void testa_algoritmo (void (*funcao)(), int numeros_teste[], int contador, int n
         default:
             exit(1);
     }
+
+    printf("\n\nExecutando Algoritmo %s ...\n", str);
+    clock_t inicio = clock();
+
+    /* Ordena os numeros usando a funcao dada */
+    funcao(numeros_teste, 0, contador);
+
+    clock_t fim = clock();
+
+    /* Calcula o tempo de execucao em segundos */
+    float tempo_execucao = ((float) fim - (float) inicio) / CLOCKS_PER_SEC;
 
     printf("\nAlgoritmo %s executado com sucesso!\n", str);
 
@@ -53,8 +53,8 @@ void testa_algoritmo (void (*funcao)(), int numeros_teste[], int contador, int n
     {
         if (printar == 1) 
         {
-            printf("Numeros ordenados:\n");
-            for (i = 0; i < contador; i++) 
+            printf("\nNumeros ordenados:\n");
+            for (i = 0; i <= contador; i++) 
                 printf("%d ", numeros_teste[i]);
             
             printf("\n");
@@ -106,6 +106,8 @@ int main (int argc, char *argv[])
     /* Leitura dos numeros do arquivo */
     int nr = 0;
     int contador = 0;
+    
+    printf("\nLeitura do arquivo em andamento...\n");
 
     while (fscanf(arquivo, "%d", &nr) == 1) 
     { 
@@ -142,18 +144,23 @@ int main (int argc, char *argv[])
     } 
 
     /* Fechar o arquivo */
-    fclose(arquivo);
+    fclose(arquivo); 
+
+    printf("\nLeitura concluida com sucesso!\n");
+    printf("\n%d numeros inteiros lidos\n", contador);
 
     contador--; /* Decrementa o contador para o tamanho correto do array */
 
     testa_algoritmo(mergeSort, numeros_MergeSort, contador, 1);
     testa_algoritmo(algor1, numeros_algor1, contador, 2);
-    /* testa_algoritmo(quickSort, numeros_QuickSort, contador, 3);*/
-    /* testa_algoritmo(algor2, numeros_algor2, contador, 4);*/
+    testa_algoritmo(quickSort, numeros_QuickSort, contador, 3);
+    testa_algoritmo(algor2, numeros_algor2, contador, 4);
 
     /* Liberar a memória alocada */
     free(numeros_algor1);
     free(numeros_algor2);
+    free(numeros_MergeSort);
+    free(numeros_QuickSort);
 
     return 0;
 }

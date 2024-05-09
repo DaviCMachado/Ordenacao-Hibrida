@@ -1,60 +1,69 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "algoritmo2.h"
+#include <stdint.h>
 
-/* Função para trocar dois elementos de posição no array */
-void swap(int* a, int* b) 
+void findMinMax(int arr[], int n, int *min, int *max) 
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+    *min = *max = arr[0];
+    int i;
+    for ( i = 1; i < n; i++) 
+    {
+        if (arr[i] < *min) 
+            *min = arr[i];
+        else if 
+            (arr[i] > *max) *max = arr[i];
+    }
 }
 
-/* Função para encontrar o pivô e particionar o array */
-int partition(int array[], int low, int high) 
-{
-    int pivot = array[high]; /* O pivô é o último elemento */
-    int i = (low - 1); /* O índice do menor elemento */
-    int j = 0;
 
-    for (j = low; j <= high - 1; j++) 
+void spreadSort (int arr[], int n) 
+{
+    int min, max, i;
+    findMinMax(arr, n, &min, &max);
+    uint32_t *buckets = calloc(max - min + 1, sizeof(uint32_t));
+
+    for (i = 0; i < n; i++)
+        buckets[arr[i] - min]++;
+
+    int idx = 0;
+    for (i = min; i <= max; i++) 
     {
-        /* Se o elemento atual for menor ou igual ao pivô */
-        if (array[j] <= pivot) 
+        while (buckets[i - min] > 0) 
         {
-            i++; /* Incrementa o índice do menor elemento */
-            swap(&array[i], &array[j]); /* Troca os elementos */
+            arr[idx++] = i;
+            buckets[i - min]--;
         }
     }
-    swap(&array[i + 1], &array[high]); /* Coloca o pivô no lugar certo */
-    return (i + 1); /* Retorna a posição do pivô */
-}
 
-/* Função principal do Quicksort */
-void quickSort(int array[], int low, int high) 
-{
-    if (low < high) 
+    /*Agora, eh preciso corrigir o ultimo elemento que nao esta ordenado*/
+
+    int j = 0;
+    int ultimo = arr[n];
+    int temp;
+    while (arr[j] < ultimo)
+        j++;
+    
+    for (i = n; i > j; i--)
     {
-        /* Encontra o pivô e particiona o array */
-        int pi = partition(array, low, high);
-
-        /* Ordena os elementos antes e depois do pivô recursivamente */
-        quickSort(array, low, pi - 1);
-        quickSort(array, pi + 1, high);
+        arr[i] = arr[i-1];
     }
+    arr[j] = ultimo;
+
+    /*Todo array agora esta ordenado*/
+
+    free(buckets);
 }
 
-/* Função para imprimir o array */
-void printArray(int array[], int size) 
+
+void algor2(int numeros[], int inicio, int high) 
 {
-    int i = 0;
-    for (i = 0; i < size; i++) 
-        printf("%d ", array[i]);
-        
-    printf("\n");
+    spreadSort(numeros + inicio, high);
 }
 
-void algor2(int array[], int inicio, int size) 
-{
-    quickSort(array, inicio, size);
-}
+
+
+
+
+
+
+

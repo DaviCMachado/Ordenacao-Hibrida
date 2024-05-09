@@ -1,23 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "algoritmo1.h"
-
-void mergeSort(int arr[], int left, int right) 
-{
-    if (left < right) 
-    {
-        /* Calcula o meio do vetor */
-        int mid = left + (right - left) / 2;
-
-        /* Ordena a metade esquerda */
-        mergeSort(arr, left, mid);
-        /* Ordena a metade direita */
-        mergeSort(arr, mid + 1, right);
-
-        /* Une as partes ordenadas*/
-        merge(arr, left, mid, right);
-    }
-}
 
 void merge (int arr[], int left, int mid, int right) 
 {
@@ -69,6 +51,22 @@ void merge (int arr[], int left, int mid, int right)
         k++;
     }
 }
+void mergeSort(int arr[], int left, int right) 
+{
+    if (left < right) 
+    {
+        /* Calcula o meio do vetor */
+        int mid = left + (right - left) / 2;
+
+        /* Ordena a metade esquerda */
+        mergeSort(arr, left, mid);
+        /* Ordena a metade direita */
+        mergeSort(arr, mid + 1, right);
+
+        /* Une as partes ordenadas*/
+        merge(arr, left, mid, right);
+    }
+}
 
 void insertionSort(int arr[], int left, int right) {
     
@@ -90,7 +88,7 @@ void insertionSort(int arr[], int left, int right) {
     }
 }
 
-void hybridSort(int arr[], int left, int right, int threshold) 
+void timSort(int arr[], int left, int right, int threshold) 
 {
     if (left < right) 
     {
@@ -101,17 +99,18 @@ void hybridSort(int arr[], int left, int right, int threshold)
         } 
         else 
         {
-            hybridSort(arr, left, mid, threshold);
-            hybridSort(arr, mid + 1, right, threshold);
+            timSort(arr, left, mid, threshold);
+            timSort(arr, mid + 1, right, threshold);
             merge(arr, left, mid, right);
         }
     }
 }
 
-
-void algor1 (int numeros[], int inicio, int size) 
+void algor1 (int numeros[], int inicio, int high) 
 {
     int threshold = 10;
-    hybridSort(numeros, inicio, size, threshold);
+    timSort(numeros, inicio, high, threshold);
 }
+
+
 

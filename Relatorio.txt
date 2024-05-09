@@ -11,36 +11,33 @@ O código será avaliado utilizando o compilador gcc com opções "-O3 -ansi"
 Para a comparação de desempenho será aceito o uso de medição de tempo ou análise de complexidade - função O().
 
 
-Algoritmo1 = MergeSort + InsertionSort
+<--- Algoritmos Escolhidos --->
 
-Algoritmo2 = QuickSort + ...
+Algoritmo1 = KirkPatrick-Reisch (MergeSort + QuickSort)
+
+Algoritmo2 = SpreadSort (QuickSortx + RadixSort)
 
 
-/// checklist de implementações
+/-- checklist de implementações --\
 
 o programa recebe:
 (x) arquivos de texto com inteiros
 
 o programa apresenta bugs:
-Não
+nao
 
 implementado:
 (x) funcao principal 1
 (x) funcao principal 2
-(x) funcao secundaria 1
-() funcao secundaria 2
+() funcao secundaria 1
+(x) funcao secundaria 2
 (1/2) diagrama de fluxo do programa
-(x) chamada de funcoes
-() mensagens de erro
+(x) mensagens de erro
 (x) funciona em linux
 (1/2) relatorio de comparação por tempo
 (1/2) relatorio de comparação por complexidade
-
-falta decidir:
-() nome dos algoritmos
-() implementações adicionais
-(1/2) explicacao dos algoritmos e seus usos
-
+(0/2) explicacao dos algoritmos e seus usos
+() threshold correto
 
             Como compilar:
                 gcc -O3 -ansi main.c -o main
@@ -48,49 +45,46 @@ falta decidir:
             Como rodar:
                 ./main numeros.txt
 
-
             Algoritmo1: mistura de MergeSort com InsertionSort
-            Algoritmo2: mistura de QuickSortSort com ...
+            Algoritmo2: mistura de QuickSortSort com Radix Sort
 
-            <----Comparacao por tempo---->
+            <----Comparacao por tempo, numeros aleatorios---->
 
             Algoritmo1:
-            1k elementos: vence do MergeSort 
-            100k elementos: vence do MergeSort 
-            1M elementos: vence do MergeSort 
+            1k elementos: falta testar 
+            100k elementos: falta testar
+            1M elementos: falta testar
 
             Algoritmo2:
-            1k elementos: vence do QuickSort??  falta testar
-            100k elementos: vence do QuickSort??
-            1M elementos: vence do QuickSort??
+            Vence do QuickSort, do MergeSort e do TimSort em todos  
+            tamanhos testados (Até 1M)
+
+            <----Comparacao por tempo, numeros parcialmente ordenados---->
+
+            Algoritmo1:
+            1k elementos: falta testar 
+            100k elementos: falta testar 
+            1M elementos: falta testar 
+
+            Algoritmo2:
+            Vence do QuickSort, do MergeSort e do TimSort em todos  
+            tamanhos testados (Até 1M)
+
+            <----Comparacao por tempo, muitos numeros repetidos---->
+
+            Algoritmo1:
+            1k elementos: falta testar 
+            100k elementos: falta testar 
+            1M elementos: falta testar 
+
+            Algoritmo2:
+            Vence do QuickSort, do MergeSort e do TimSort em todos  
+            tamanhos testados (Até 1M)
 
 
             <----Explicacao Algoritmo1---->
            
-            O MergeSort possui complexidade média de O(n log(n)),
-            nosso Algoritmo1 possui uma complexidade média também 
-            de O(n log(n)), porém o uso do InsertionSort em conjunto com o MergeSort acelera o processo de Ordenação e isso reduz em muito o tempo executado, em teoria funciona melhor para todos os casos.
+      
+            <----Explicacao Algoritmo2---->
 
-            Isso ocorre pois:
-
-            O Algoritmo1 reduz o número de chamadas recursivas em comparação com o MergeSort tradicional. 
-            
-            Ele só usa a recursão quando o tamanho do array ultrapassa um determinado limite (threshold). 
-            
-            Para arrays menores que o threshold, o algoritmo usa o Insertion Sort diretamente. 
-            
-            Isso reduz a sobrecarga de chamadas de função e o consumo de memória associado às chamadas recursivas.
-            
-            O InsertionSort é eficiente para arrays pequenos, pois requer menos movimentos de elementos. O Algoritmo1 aproveita essa característica, alternando para o InsertionSort quando detecta que um sub-array está menor que o threshold definido. 
-            
-            Isso é mais eficiente do que continuar a dividir e mesclar recursivamente como no MergeSort.
-
-
-
-diferenças entre um algoritmo híbrido que combina Mergesort e Insertion Sort e outro que combina Quicksort e Insertion Sort. Aqui estão algumas das diferenças principais:
-
-Estabilidade e complexidade de tempo: Mergesort é um algoritmo estável de ordenação que tem uma complexidade de tempo garantida de O(n log n), independentemente da entrada. Por outro lado, o Quicksort é instável e pode ter um desempenho pior no pior caso (O(n^2)), embora seja frequentemente mais rápido em média e em muitos casos práticos. Portanto, um algoritmo híbrido de Mergesort e Insertion Sort tenderá a ser mais estável e previsível, enquanto um híbrido de Quicksort e Insertion Sort pode ser mais rápido em média, mas pode ter picos de desempenho pior em casos específicos.
-Uso de memória: Mergesort requer espaço adicional de memória devido à mesclagem dos subarrays, o que pode ser uma desvantagem em certos contextos, especialmente quando a memória é limitada. Por outro lado, Quicksort é in-place, o que significa que geralmente requer menos espaço de memória adicional. Portanto, um algoritmo híbrido de Quicksort e Insertion Sort pode ser mais eficiente em termos de uso de memória.
-Comportamento em conjuntos quase ordenados: O Mergesort é mais consistente em termos de desempenho, independentemente do estado de ordenação dos dados de entrada. Por outro lado, o Quicksort pode ser menos eficiente em conjuntos de dados quase ordenados, pois pode ter um desempenho mais próximo do pior caso. Portanto, se a entrada incluir muitos subconjuntos quase ordenados, o híbrido Mergesort e Insertion Sort pode ser uma escolha melhor.
-
-Gremio.
+        O SpreadSort utiliza RadixSort para separar o array em buckets (arrays menores) e então utiliza o QuickSort para ordenar os elementos dentro desses buckets
