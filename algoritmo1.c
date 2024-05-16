@@ -106,11 +106,67 @@ void timSort(int arr[], int left, int right, int threshold)
     }
 }
 
-void algor1 (int numeros[], int inicio, int high) 
+void Tim (int numeros[], int low, int high) 
 {
     int threshold = 10;
-    timSort(numeros, inicio, high, threshold);
+    timSort(numeros, low, high, threshold);
 }
 
 
+void swap(int *a, int *b) 
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+ 
+/* Função para partição do array para o QuickSort */
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = (low - 1);
+    int j = 0;
+    for (j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+
+
+
+/* Função principal que implementa a ordenação Kirkpatrick-Reisch*/
+void kirkpatrickReischSort(int arr[], int left, int right, int threshold) 
+{
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+
+        /* Aplica QuickSort se o subarray for menor que o threshold */
+        if (right - left + 1 <= threshold) {
+            quickSort(arr, left, right);
+        } else {
+            kirkpatrickReischSort(arr, left, mid, threshold);
+            kirkpatrickReischSort(arr, mid + 1, right, threshold);
+            merge(arr, left, mid, right);
+        }
+    }
+}
+
+void Kirk (int numeros[], int low, int high) 
+{
+    int threshold = 10;
+    kirkpatrickReischSort(numeros, low, high, threshold);
+}
 

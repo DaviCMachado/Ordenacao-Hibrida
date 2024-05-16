@@ -55,9 +55,9 @@ void spreadSort (int arr[], int n)
 }
 
 
-void algor2(int numeros[], int inicio, int high) 
+void Spread (int numeros[], int low, int high) 
 {
-    spreadSort(numeros + inicio, high);
+    spreadSort(numeros + low, high);
 }
 
 

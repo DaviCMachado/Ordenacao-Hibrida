@@ -1,6 +1,5 @@
 #include "algoritmo1.c"
 #include "algoritmo2.c"
-#include "quickSort.c"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,20 +9,20 @@
 /* Funcao de execucao dos algoritmos */
 void testa_algoritmo (void (*funcao)(), int numeros_teste[], int contador, int n)
 {
-    char str[20];
+    char str[30];
     switch (n)
     {
         case 1:
-            strcpy(str,"MergeSort");
-            break;
-        case 2:
             strcpy(str,"TimSort");
             break;
-        case 3:
+        case 2:
             strcpy(str,"QuickSort");
             break;
+        case 3:
+            strcpy(str,"KirkPatrick-Reisch_Sort");
+            break;
         case 4:
-            strcpy(str,"Hibrido2");
+            strcpy(str,"SpreadSort");
             break;
         default:
             exit(1);
@@ -87,18 +86,18 @@ int main (int argc, char *argv[])
     int capacidade = 10; /* capacidade inicial dos arrays */
 
     /* Criacao dos arrays para receber os numeros */
-    int *numeros_MergeSort = malloc(capacidade * sizeof(int));
+    int *numeros_TimSort = malloc(capacidade * sizeof(int));
     int *numeros_QuickSort = malloc(capacidade * sizeof(int));
-    int *numeros_algor1 = malloc(capacidade * sizeof(int));
-    int *numeros_algor2 = malloc(capacidade * sizeof(int));
+    int *numeros_Kirk = malloc(capacidade * sizeof(int));
+    int *numeros_SpreadSort = malloc(capacidade * sizeof(int));
     
-    if (numeros_algor1 == NULL || numeros_algor2 == NULL || numeros_MergeSort == NULL || numeros_QuickSort == NULL) 
+    if (numeros_Kirk == NULL || numeros_SpreadSort == NULL || numeros_TimSort == NULL || numeros_QuickSort == NULL) 
     {
         perror("Erro de alocacao de memoria");
         fclose(arquivo);
-        free(numeros_algor1);
-        free(numeros_algor2);
-        free(numeros_MergeSort);
+        free(numeros_Kirk);
+        free(numeros_SpreadSort);
+        free(numeros_TimSort);
         free(numeros_QuickSort);
         return 1;
     }
@@ -111,34 +110,34 @@ int main (int argc, char *argv[])
 
     while (fscanf(arquivo, "%d", &nr) == 1) 
     { 
-        numeros_MergeSort[contador] = nr;
+        numeros_TimSort[contador] = nr;
         numeros_QuickSort[contador] = nr;  
-        numeros_algor1[contador] = nr;
-        numeros_algor2[contador] = nr;        
+        numeros_Kirk[contador] = nr;
+        numeros_SpreadSort[contador] = nr;        
 
         if (contador >= (capacidade - 1) ) 
         {
             capacidade *= 2; /* Duplica a capacidade do array quando necessário */
 
-            numeros_algor1 = realloc(numeros_algor1, capacidade * sizeof(int));
-            numeros_algor2 = realloc(numeros_algor2, capacidade * sizeof(int));
-            numeros_MergeSort = realloc(numeros_MergeSort, capacidade * sizeof(int));
+            numeros_Kirk = realloc(numeros_Kirk, capacidade * sizeof(int));
+            numeros_SpreadSort = realloc(numeros_SpreadSort, capacidade * sizeof(int));
+            numeros_TimSort = realloc(numeros_TimSort, capacidade * sizeof(int));
             numeros_QuickSort = realloc(numeros_QuickSort, capacidade * sizeof(int));
             
-            if (numeros_algor1 == NULL || numeros_algor2 == NULL || numeros_MergeSort == NULL || numeros_QuickSort == NULL) 
+            if (numeros_Kirk == NULL || numeros_SpreadSort == NULL || numeros_TimSort == NULL || numeros_QuickSort == NULL) 
             {
                 perror("Erro de alocação de memória");
                 fclose(arquivo);
-                free(numeros_algor1);
-                free(numeros_algor2);
-                free(numeros_MergeSort);
+                free(numeros_Kirk);
+                free(numeros_SpreadSort);
+                free(numeros_TimSort);
                 free(numeros_QuickSort);
                 return 1;
             }
         }
-        numeros_algor1[contador] = nr;
-        numeros_algor2[contador] = nr;
-        numeros_MergeSort[contador] = nr;
+        numeros_Kirk[contador] = nr;
+        numeros_SpreadSort[contador] = nr;
+        numeros_TimSort[contador] = nr;
         numeros_QuickSort[contador] = nr;
         contador++;
     } 
@@ -151,15 +150,15 @@ int main (int argc, char *argv[])
 
     contador--; /* Decrementa o contador para o tamanho correto do array */
 
-    testa_algoritmo(mergeSort, numeros_MergeSort, contador, 1);
-    testa_algoritmo(algor1, numeros_algor1, contador, 2);
+    testa_algoritmo(Tim, numeros_TimSort, contador, 1); 
     testa_algoritmo(quickSort, numeros_QuickSort, contador, 3);
-    testa_algoritmo(algor2, numeros_algor2, contador, 4);
+    testa_algoritmo(Kirk, numeros_Kirk, contador, 2);
+    testa_algoritmo(Spread, numeros_SpreadSort, contador, 4);
 
     /* Liberar a memória alocada */
-    free(numeros_algor1);
-    free(numeros_algor2);
-    free(numeros_MergeSort);
+    free(numeros_Kirk);
+    free(numeros_SpreadSort);
+    free(numeros_TimSort);
     free(numeros_QuickSort);
 
     return 0;

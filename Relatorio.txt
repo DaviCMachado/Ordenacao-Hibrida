@@ -15,13 +15,13 @@ Para a comparação de desempenho será aceito o uso de medição de tempo ou an
 
 Algoritmo1 = KirkPatrick-Reisch (MergeSort + QuickSort)
 
-Algoritmo2 = SpreadSort (QuickSortx + RadixSort)
+Algoritmo2 = SpreadSort (QuickSort + RadixSort)
 
 
 /-- checklist de implementações --\
 
 o programa recebe:
-(x) arquivos de texto com inteiros
+(x) arquivos de texto apenas com inteiros
 
 o programa apresenta bugs:
 nao
@@ -29,7 +29,7 @@ nao
 implementado:
 (x) funcao principal 1
 (x) funcao principal 2
-() funcao secundaria 1
+(x) funcao secundaria 1
 (x) funcao secundaria 2
 (1/2) diagrama de fluxo do programa
 (x) mensagens de erro
@@ -37,7 +37,6 @@ implementado:
 (1/2) relatorio de comparação por tempo
 (1/2) relatorio de comparação por complexidade
 (0/2) explicacao dos algoritmos e seus usos
-() threshold correto
 
             Como compilar:
                 gcc -O3 -ansi main.c -o main
@@ -45,18 +44,21 @@ implementado:
             Como rodar:
                 ./main numeros.txt
 
-            Algoritmo1: mistura de MergeSort com InsertionSort
-            Algoritmo2: mistura de QuickSortSort com Radix Sort
+            Algoritmo1: mistura de MergeSort com QuickSort
+            Algoritmo2: mistura de QuickSort com Radix Sort
+
+            Comparamos nossos algoritmos com QuickSort 
+            e Timsort (que é melhor que MergeSort em todos os casos)
 
             <----Comparacao por tempo, numeros aleatorios---->
 
             Algoritmo1:
-            1k elementos: falta testar 
-            100k elementos: falta testar
+            1k elementos: vence do  
+            100k elementos: vence do Timsort e do QuickSort
             1M elementos: falta testar
 
             Algoritmo2:
-            Vence do QuickSort, do MergeSort e do TimSort em todos  
+            Vence do QuickSort e do TimSort em todos  
             tamanhos testados (Até 1M)
 
             <----Comparacao por tempo, numeros parcialmente ordenados---->
@@ -67,7 +69,7 @@ implementado:
             1M elementos: falta testar 
 
             Algoritmo2:
-            Vence do QuickSort, do MergeSort e do TimSort em todos  
+            Vence do QuickSort e do TimSort em todos  
             tamanhos testados (Até 1M)
 
             <----Comparacao por tempo, muitos numeros repetidos---->
@@ -78,7 +80,7 @@ implementado:
             1M elementos: falta testar 
 
             Algoritmo2:
-            Vence do QuickSort, do MergeSort e do TimSort em todos  
+            Vence do QuickSort e do TimSort em todos  
             tamanhos testados (Até 1M)
 
 

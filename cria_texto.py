@@ -1,6 +1,6 @@
 import random
 
-x = 10000
+x = 100000
 
 # Gera x números inteiros aleatórios entre 0 e 1000
 numeros = [random.randint(0, 1000) for _ in range(x)]
