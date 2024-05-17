@@ -151,8 +151,8 @@ int main (int argc, char *argv[])
     contador--; /* Decrementa o contador para o tamanho correto do array */
 
     testa_algoritmo(Tim, numeros_TimSort, contador, 1); 
-    testa_algoritmo(quickSort, numeros_QuickSort, contador, 3);
-    testa_algoritmo(Kirk, numeros_Kirk, contador, 2);
+    testa_algoritmo(quickSort, numeros_QuickSort, contador, 2);
+    testa_algoritmo(Kirk, numeros_Kirk, contador, 3);
     testa_algoritmo(Spread, numeros_SpreadSort, contador, 4);
 
     /* Liberar a memória alocada */

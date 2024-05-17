@@ -23,20 +23,17 @@ Algoritmo2 = SpreadSort (QuickSort + RadixSort)
 o programa recebe:
 (x) arquivos de texto apenas com inteiros
 
-o programa apresenta bugs:
-nao
-
 implementado:
 (x) funcao principal 1
 (x) funcao principal 2
 (x) funcao secundaria 1
 (x) funcao secundaria 2
-(1/2) diagrama de fluxo do programa
+(1/2) diagrama de fluxo do programa /////
 (x) mensagens de erro
 (x) funciona em linux
-(1/2) relatorio de comparação por tempo
-(1/2) relatorio de comparação por complexidade
-(0/2) explicacao dos algoritmos e seus usos
+(2/2) relatorio de comparação por tempo
+(2/2) relatorio de comparação por complexidade
+(2/2) explicacao dos algoritmos e seus usos
 
             Como compilar:
                 gcc -O3 -ansi main.c -o main
@@ -44,49 +41,125 @@ implementado:
             Como rodar:
                 ./main numeros.txt
 
-            Algoritmo1: mistura de MergeSort com QuickSort
-            Algoritmo2: mistura de QuickSort com Radix Sort
+
+            <-------Relatório de comparação por tempo------->
 
             Comparamos nossos algoritmos com QuickSort 
             e Timsort (que é melhor que MergeSort em todos os casos)
 
             <----Comparacao por tempo, numeros aleatorios---->
 
-            Algoritmo1:
-            1k elementos: vence do  
+            KirkPatrick-Reisch:
+            10k elementos: perde do Timsort e do QuickSort  
             100k elementos: vence do Timsort e do QuickSort
-            1M elementos: falta testar
+            1M elementos: empata com o Timsort e vence do QuickSort
 
-            Algoritmo2:
-            Vence do QuickSort e do TimSort em todos  
+            SpreadSort:
+            - Vence do QuickSort e do TimSort em todos  
             tamanhos testados (Até 1M)
 
             <----Comparacao por tempo, numeros parcialmente ordenados---->
 
-            Algoritmo1:
-            1k elementos: falta testar 
-            100k elementos: falta testar 
-            1M elementos: falta testar 
+            KirkPatrick-Reisch:
+            - Vence do QuickSort e perde do TimSort em todos  
+            tamanhos testados (Até 1M)
 
-            Algoritmo2:
-            Vence do QuickSort e do TimSort em todos  
+            SpreadSort:
+            - Vence do QuickSort e do TimSort em todos  
             tamanhos testados (Até 1M)
 
             <----Comparacao por tempo, muitos numeros repetidos---->
 
-            Algoritmo1:
-            1k elementos: falta testar 
-            100k elementos: falta testar 
-            1M elementos: falta testar 
+            KirkPatrick-Reisch:
+            - Perde do TimSort até 100 mil, depois vence para tamanhos maiores
+            -Vence do QuickSort em todos os tamanhos
 
-            Algoritmo2:
-            Vence do QuickSort e do TimSort em todos  
+            SpreadSort:
+            - Vence do QuickSort e do TimSort em todos  
             tamanhos testados (Até 1M)
+        
+
+            <-----Relatório de Comparação por Complexidade----->
+            
+                            KirkPatrick-Reisch
+            
+            Tempo de Execução:
+
+            - No melhor caso, o tempo de execução é O(n log n), quando os subarrays menores são classificados eficientemente pelo QuickSort e mesclados eficientemente pelo MergeSort.
+            
+            - No pior caso, o tempo de execução é O(n log n), quando o QuickSort é aplicado a subarrays maiores e o MergeSort realiza a mesclagem.
+            
+            Espaço de Memória:
+
+            - O KirkPatrick-Reisch requer espaço adicional devido à mesclagem extra realizada pelo MergeSort. 
+            
+            - O espaço adicional é O(n) para armazenar os subarrays durante a mesclagem.
+            
+            
+                                SpreadSort
+
+            Tempo de Execução:
+
+            - O tempo de execução do SpreadSort depende principalmente do desempenho do QuickSort e do RadixSort.
+            
+            - Em média, o tempo de execução é O(n log n), pois o QuickSort é aplicado a subarrays menores e o RadixSort tem um desempenho linear para distribuir os elementos nos buckets.
+            
+            Espaço de Memória:
+
+            - O SpreadSort também requer espaço adicional para armazenar os buckets temporários durante o processo de ordenação. 
+            
+            - O espaço adicional é linear, sendo proporcional ao número de elementos do array original.
 
 
-            <----Explicacao Algoritmo1---->
-           
-      
-            <----Explicacao Algoritmo2---->
+            
+            <----Explicação KirkPatrick-Reisch---->
 
-        O SpreadSort utiliza RadixSort para separar o array em buckets (arrays menores) e então utiliza o QuickSort para ordenar os elementos dentro desses buckets
+            Combinação de Algoritmos:
+
+            - O KirkPatrick-Reisch combina o MergeSort e o QuickSort para tirar proveito das vantagens de ambos os algoritmos.
+        
+            Uso do MergeSort:
+
+            - O MergeSort é utilizado em subarrays maiores, onde sua eficiência em arrays grandes é vantajosa.
+            
+            Uso do QuickSort:
+
+            - O QuickSort é aplicado em subarrays menores, aproveitando sua eficiência em arrays pequenos ou parcialmente ordenados.
+            
+            Vantagens:
+
+            - Eficiente em cenários com muitos elementos repetidos ou arrays parcialmente ordenados.
+            
+            - Oferece uma boa combinação de desempenho em diferentes tipos de dados.
+            
+            Desvantagens:
+
+            - Requer mais espaço devido à mesclagem extra realizada pelo MergeSort.
+            
+            - O tempo de execução pode ser um pouco mais lento que o QuickSort em certos cenários devido à mesclagem adicional.
+            
+
+            <----Explicação SpreadSort---->
+
+            Combinação de Algoritmos:
+
+            - O SpreadSort combina o QuickSort com o RadixSort para aproveitar as vantagens de ambos os algoritmos.
+            
+            Uso do RadixSort:
+
+            - O RadixSort é usado para dividir o array em buckets (subarrays menores) com base nos dígitos dos elementos.
+            Uso do QuickSort:
+
+            - O QuickSort é aplicado para classificar os elementos dentro desses buckets.
+            
+            Vantagens:
+
+            -Eficiente em uma ampla gama de cenários, especialmente quando os elementos têm muitos dígitos ou quando o array está parcialmente ordenado.
+            
+            - Combina a eficiência do QuickSort em subarrays menores com a capacidade do RadixSort de ordenar elementos com base em dígitos específicos.
+            
+            Desvantagens:
+
+            - Pode ser menos eficiente em arrays pequenos ou totalmente desordenados, devido ao custo adicional do RadixSort.
+
+            - Requer espaço adicional para armazenar os buckets temporários durante o processo de ordenação.
