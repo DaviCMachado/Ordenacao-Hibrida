@@ -43,14 +43,14 @@ void testa_algoritmo (void (*funcao)(), int numeros_teste[], int contador, int n
 
     printf("\nTempo de execucao do algoritmo %s: %.4f segundos\n", str, tempo_execucao);
 
-    int printar = 0;
+    int opcao = 0;
     printf("\nDeseja imprimir os numeros ordenados? \n1 - (Sim), 0 - (Nao) : ");
        
     /* Testa se o input eh valido */
     int i = 0;
-    if (scanf("%d", &printar) == 1) 
+    if (scanf("%d", &opcao) == 1) 
     {
-        if (printar == 1) 
+        if (opcao == 1) 
         {
             printf("\nNumeros ordenados:\n");
             for (i = 0; i <= contador; i++) 
@@ -59,6 +59,34 @@ void testa_algoritmo (void (*funcao)(), int numeros_teste[], int contador, int n
             printf("\n");
         }
     } 
+    else 
+    {
+        /* Limpa o input buffer */
+        while (getchar() != '\n');
+    } 
+
+    printf("\nDeseja salvar os números ordenados em um arquivo .txt?\n1 - (Sim), 0 - (Não): ");
+    
+    if (scanf("%d", &opcao) == 1) 
+    {
+        char nome_arquivo[50];
+        snprintf(nome_arquivo, sizeof(nome_arquivo), "%s.txt", str);
+
+        FILE *arquivo = fopen(nome_arquivo, "w");
+        if (arquivo == NULL) 
+        {
+            printf("\nErro ao abrir o arquivo para escrita.\n");
+            return;
+        }
+        i = 0;
+        for (i = 0; i < contador; i++) 
+        {
+            fprintf(arquivo, "%d ", numeros_teste[i]);
+        }
+        
+        fclose(arquivo);
+        printf("\nNúmeros ordenados salvos em '%s.txt'\n", str);
+    }
     else 
     {
         /* Limpa o input buffer */

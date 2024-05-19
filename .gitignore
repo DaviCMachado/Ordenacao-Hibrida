@@ -1,0 +1,5 @@
+# Ignora todos os arquivos .txt
+*.txt
+
+# Não ignora Relatorio.txt
+!Relatorio.txt
