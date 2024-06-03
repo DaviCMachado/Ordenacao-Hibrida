@@ -28,12 +28,10 @@ implementado:
 (x) funcao principal 2
 (x) funcao secundaria 1
 (x) funcao secundaria 2
-(1/2) diagrama de fluxo do programa /////
 (x) mensagens de erro
-(x) funciona em linux
-(2/2) relatorio de comparação por tempo
-(2/2) relatorio de comparação por complexidade
-(2/2) explicacao dos algoritmos e seus usos
+(x) relatorio de comparação por tempo
+(x) relatorio de comparação por complexidade
+(x) explicacao dos algoritmos e seus usos
 
             Como compilar:
                 gcc -O3 -ansi main.c -o main
@@ -77,6 +75,7 @@ implementado:
             SpreadSort:
             - Vence do QuickSort e do TimSort em todos  
             tamanhos testados (Até 1M)
+              
         
 
             <-----Relatório de Comparação por Complexidade----->
@@ -96,13 +95,13 @@ implementado:
             - O espaço adicional é O(n) para armazenar os subarrays durante a mesclagem.
             
             
-                                SpreadSort
+                            SpreadSort
 
             Tempo de Execução:
 
             - O tempo de execução do SpreadSort depende principalmente do desempenho do QuickSort e do RadixSort.
             
-            - Em média, o tempo de execução é O(n log n), pois o QuickSort é aplicado a subarrays menores e o RadixSort tem um desempenho linear para distribuir os elementos nos buckets.
+            - Em média, o tempo de execução é sempre O(n log n), pois o QuickSort é aplicado a subarrays menores e o RadixSort tem um desempenho linear para distribuir os elementos nos buckets.
             
             Espaço de Memória:
 
@@ -136,7 +135,7 @@ implementado:
 
             - Requer mais espaço devido à mesclagem extra realizada pelo MergeSort.
             
-            - O tempo de execução pode ser um pouco mais lento que o QuickSort em certos cenários devido à mesclagem adicional.
+            - O tempo de execução pode ser um pouco mais lento em certos cenários devido à mesclagem adicional.
             
 
             <----Explicação SpreadSort---->
@@ -154,7 +153,7 @@ implementado:
             
             Vantagens:
 
-            -Eficiente em uma ampla gama de cenários, especialmente quando os elementos têm muitos dígitos ou quando o array está parcialmente ordenado.
+            - Eficiente em uma ampla gama de cenários, especialmente quando os elementos têm muitos dígitos ou quando o array está parcialmente ordenado.
             
             - Combina a eficiência do QuickSort em subarrays menores com a capacidade do RadixSort de ordenar elementos com base em dígitos específicos.
             

@@ -59,39 +59,40 @@ void testa_algoritmo (void (*funcao)(), int numeros_teste[], int contador, int n
             printf("\n");
         }
     } 
-    else 
-    {
-        /* Limpa o input buffer */
-        while (getchar() != '\n');
-    } 
+ 
+    /* Limpa o input buffer */
+    while (getchar() != '\n');
+    
 
     printf("\nDeseja salvar os números ordenados em um arquivo .txt?\n1 - (Sim), 0 - (Não): ");
     
     if (scanf("%d", &opcao) == 1) 
     {
-        char nome_arquivo[50];
-        snprintf(nome_arquivo, sizeof(nome_arquivo), "%s.txt", str);
+        if (opcao == 1)
+        {
+            char nome_arquivo[50];
+            snprintf(nome_arquivo, sizeof(nome_arquivo), "%s.txt", str);
 
-        FILE *arquivo = fopen(nome_arquivo, "w");
-        if (arquivo == NULL) 
-        {
-            printf("\nErro ao abrir o arquivo para escrita.\n");
-            return;
+            FILE *arquivo = fopen(nome_arquivo, "w");
+            if (arquivo == NULL) 
+            {
+                printf("\nErro ao abrir o arquivo para escrita.\n");
+                return;
+            }
+            i = 0;
+            for (i = 0; i < contador; i++) 
+            {
+                fprintf(arquivo, "%d ", numeros_teste[i]);
+            }
+            
+            fclose(arquivo);
+            printf("\nNúmeros ordenados salvos em '%s.txt'\n", str);
         }
-        i = 0;
-        for (i = 0; i < contador; i++) 
-        {
-            fprintf(arquivo, "%d ", numeros_teste[i]);
-        }
-        
-        fclose(arquivo);
-        printf("\nNúmeros ordenados salvos em '%s.txt'\n", str);
     }
-    else 
-    {
-        /* Limpa o input buffer */
-        while (getchar() != '\n');
-    } 
+    
+    /* Limpa o input buffer */
+    while (getchar() != '\n');
+     
 }
 
 int main (int argc, char *argv[]) 
