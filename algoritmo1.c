@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void merge (int arr[], int left, int mid, int right) 
-{
+void merge (int arr[], int left, int mid, int right) {
     int i, j, k;
     int n1 = mid - left + 1;
     int n2 = right - mid;
@@ -13,6 +12,7 @@ void merge (int arr[], int left, int mid, int right)
     /* Copia os dados para os vetores temporários L[] e R[] */
     for (i = 0; i < n1; i++)
         L[i] = arr[left + i];
+    
     for (j = 0; j < n2; j++)
         R[j] = arr[mid + 1 + j];
 
